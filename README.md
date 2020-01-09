@@ -7,4 +7,5 @@ Our mission is to give you a unique way of interacting with news and help you st
 node /js/n.js
 ```
 ## Example
-![GIF](images/p1.gif)
+![GIF](images/p2.gif)
+![Screencap of main application](images/p1.png)
