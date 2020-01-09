@@ -1,0 +1,340 @@
+<!--
+Name: 		  Eric Jiang, Melina Muthuswamy, Kevin Yan
+Course: 	  CSE
+Assignment:   CSE Year-long Project
+Purpose:      Provide a functional website that users can utilize
+to search news pertinent to each state.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> Map News!</title>
+
+<!-- link needed files and scripts -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href='https://fonts.googleapis.com/css?family=Fredoka One' rel='stylesheet'>
+<link rel="stylesheet" type="text/css" href="fullpage.js-master/jquery.fullPage.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src = "https://platform.twitter.com/widgets.js"> </script>
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+</script><script src="js/masonry.pkgd.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Reenie+Beanie" rel="stylesheet"> <!--Font-->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="pictures/icon.png"/> 
+
+</head>
+<body style="background-color: #80ccff"> <!-- Background color is light blue -->
+
+	<div class="tool_wrapper">				<!-- Option to choose which news source to use -->
+		<div class="select">
+			<select name="slct" id="slct">		<!-- Dropdown menu -->
+				<option value = "show_all">Show All Sources</option>		<!-- Option Choices -->
+				<option value="associated-press">Associated Press</option>
+				<option value="business-insider">Business Insider</option>
+				<option value="cnn">CNN</option>
+				<option value ="engadget"> Engadget </option>
+				<option value="espn">ESPN</option>
+				<option value="national-geographic">National Geographic</option>	
+				<option value = "reuters"> Reuters </option>
+				<option value="the-new-york-times">The New York Times</option>
+				<option value = "usa-today"> USA Today </option>
+				<option value="hide_all">Hide All</option>
+			</select>
+		</div>
+	</div>
+	<!--Select Dropdown Code Adapted from: https://codepen.io/raubaca/pen/VejpQP
+	Credit goes to Raúl Barrera-->
+
+	<nav class="fixed-nav-bar" style="height:75px">
+	
+		<!-- Info button at top left of website -->
+		<button id ="btnInfo" style = "margin-left: 15px;"><i class="material-icons">info_outline</i></button>
+
+		<!-- Information modal code adapted from
+		https://www.w3schools.com/howto/howto_js_tabs.asp -->
+		<div id ="infoModal" class="modal">
+			<!-- Info Modal content -->
+			<div class="modal-css">
+				<span class="close">&times;</span>		<!-- close button for info modal -->
+				<div class="tab">			<!-- row of tabs at top of info modal -->
+					<button class="tablinks" id="test" onclick="openTab(event, 'use')"> How to Use </button>
+					<button class="tablinks" onclick="openTab(event, 'about')"> Contact Us </button>
+				</div>
+
+				<div id="use" class="tabcontent">		<!-- How to Use tab -->
+					<!-- Short message from developers to users -->
+					<h1> Welcome to Map News! </h1>
+					<hr>
+					<h2>
+						Our mission is to give you a unique way of interacting with
+						news and help you stay in touch with what's going on in the US.
+						In a nutshell, our site aggregates and displays top news stories
+						and tweets from a variety of sources in real time. 
+						<br><br>
+						Feel free to explore the site, learning about each state's
+						demographics, trending tweets, and news articles. We hope you
+						have fun and learn a thing or two about the greatest country
+						on Earth!
+					</h2>
+					<h3> Sincerely, <br> Melina, Kevin, Eric</h3>
+					
+					<!-- Start Tutorial button -->
+					<button id="tutorialBtn" style = "position: relative;"> Tutorial </button> 
+					<div class="spacer" style="clear: both;"></div>	<!--Clearfix-->
+				</div>
+
+
+				<div id="about" class="tabcontent">		<!-- About Us tab -->
+					<div style="font-size:30px; text-align:center; background-color:white;width:100%; padding-bottom: 10px;"> Meet the Editors! </div>
+					<hr>
+					<table style="width:100%; margin-top: 20px;">
+						<tr>
+							<!-- Editor Pictures -->
+							<td class="width50"> <img src="Pictures/editors/melinamuthuswamy.png" style="height:220px; width:220px; border-radius: 50%;"/> </td>
+							<td class="width50"> <img src="Pictures/editors/ericjiang.png" style="height:220px; width:220px; border-radius: 50%;"/> </td>							
+							<td class="width50"> <img src="Pictures/editors/kevinyan.png" style="height:220px; width:220px; border-radius: 50%;"/> </td>
+						</tr>
+						<tr style="height:80px;">
+							<!-- Editor Names -->
+							<td class="width50 editorname"> Melina Mut<span class = "hanas">h</span>usw<span class = "hanas">a</span>my </td>
+							<td class="width50 editorname"> Eric Jia<span class = "hanas">n</span>g </td>
+							<td class="width50 editorname"> Kevin Y<span class = "hanas">a</span>n </td>
+						</tr>
+					</table>
+
+					<div style="padding-top:5px; padding-left:10px; padding-bottom:10px; font-size:20px">
+						<p>Contact U<span class = "hanas">s</span></p>
+						<br/>
+						<!-- Link to send email to Map News' email -->
+						Email: <a href="mailto:mapnewsmail@gmail.com?subject=Map%20News%20-%20User%20Feedback%20">mapnewsmail@gmail.com</a>
+						<br/><br/>
+						<!-- Button to Map News' Twitter account -->
+						Tweet Us:
+						<script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+						<a class="twitter-share-button" href="https://twitter.com/intent/tweet?via=mapNewsTweets">Tweet Us</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+	
+	
+	<div id="fullpage">
+	   <div id = "pagetitle" class="element"> Map News!</div>		<!-- Website Title -->
+	   <div class="section" style="padding-top:5%">	
+	      
+	      <!-- Map -->
+	      <div id = "map" class="shapes">
+	         
+	         <!-- Modal for the state -->
+	         <div id="stateModal" class="modal">
+
+	            <!-- content of information modal -->
+	            <div id="modalContent" class="modal-content">
+	               
+	               <!-- close button of modal -->
+	               <span class="close" style = "z-index: 20000">&times;</span>	
+	               
+	               <!-- Information modal code adapted from
+					http://www.bypeople.com/fancy-css-and-js-animated-information-modal/ -->
+	               <div id="left-side">
+	                  <ul>
+	                     <!-- Tab Buttons -->
+	                     <li class="choose active" id="test">
+	                        Info
+	                     </li>
+	                     <li class="pay">
+	                        News
+	                     </li>
+	                     <li class="wrap">
+	                        Twitter
+	                     </li>
+	                  </ul>
+	               </div>
+	               <div id="border">
+	                  <div id="line" class="one"></div>	<!-- Vertical line with bar -->
+	               </div>
+	               <div id="right-side">
+	                  <div id="first" class="active">	<!-- Info tab of state modal -->
+	                     <div class="icon big">
+	                        <svg viewBox="0 0 32 32">
+	                           <g filter="">
+	                              <use xlink:href="#shopping-cart"></use>
+	                           </g>
+	                        </svg>
+	                     </div>
+	                     <div style = "position: relative">
+	                     	<!-- flag of clicked state -->
+	                        <img id = "stateflag"/>
+	                        <!-- name of clicked state -->
+	                        <div class = "bubble" id = "statename">  </div>
+	                        <!-- name of clicked state's capital -->
+	                        <div class = "bubble">
+	                           <h2> Capital </h2>
+	                           <h1 id = "statecapital"></h1>
+	                        </div>
+	                        <!-- abbreviation of clicked state -->
+	                        <div class = "bubble">
+	                           <h2> Abbreviation </h2>
+	                           <h1 id = "stateabbreviation"></h1>
+	                        </div>
+	                        <!-- population of clicked state -->
+	                        <div class = "bubble">
+	                           <h2> Population </h2>
+	                           <h1 id = "statepop"></h1>
+	                        </div>
+	                        <!-- electoral votes of clicked state -->
+	                        <div class = "bubble">
+	                           <h2> Electoral Votes </h2>
+	                           <h1 id = "statevotes"></h1>
+	                        </div>
+	                        <!-- area in miles squared of clicked state -->
+	                        <div class = "bubble">
+	                           <h2> Area </h2>
+	                           <h1 id = "statearea"></h1>
+	                        </div>
+	                     </div>
+	                  </div>
+	                  <div id="second">		<!-- News tab of state modal -->	
+	                     <div class="icon big">
+	                        <svg viewBox="0 0 32 32">
+	                           <g filter="">
+	                              <use xlink:href="#credit-card"></use>
+	                           </g>
+	                        </svg>
+	                     </div>
+	                     <div style = "z-index: 1999">
+	                     	<!-- Input for news search -->
+	                        <form id = "input0" style = "display: inline;">
+	                           <input type="text" placeholder="Search for a topic" class = "style-2" id = "input" autocomplete="on">  <!-- Search for news --> 
+	                        </form>
+	                        <button class="button" id ="search">⇾</button> 
+	                        <div id = "news_title"> </div>		<!-- displays searched terms -->
+	                        <div id = 'holder' style = 'font-size: 25px; color: #80ccff; margin: 0 auto; margin-top: 35%; position: relative;'>
+                    			<div class = "arrow-up"> </div>
+                                No articles yet. Search for something! 
+                            </div>
+	                     </div>
+	                     <div id = "second_table">		<!-- table that contains the news snippets -->
+	                        <table>
+	                           <tr>
+	                              <td colspan = 4>
+	                                 <div>
+	                                 	<!-- contains the nytimes news snippets -->
+	                                    <div style = "width: 100%; height: 100%" id = "nytimes_wrapper"></div>
+	                                 </div>
+	                                 <div>
+	                                 	<!-- contains the guardian news snippets -->
+	                                    <div style = "width: 100%; height: 100%" id = "guardian_wrapper"> </div>
+	                                 </div>
+	                              </td>
+	                           </tr>
+	                        </table>
+	                     </div>
+	                  </div>
+	                  <div id="third">		<!-- Twitter tab of state modal -->
+	                     <div class="icon big">
+	                        <svg viewBox="0 0 32 32">
+	                           <g filter="">
+	                              <use xlink:href="#gift"></use>
+	                           </g>
+	                        </svg>
+	                     </div>
+	                     <table id = "third_table">  <!-- contains twitter api and trending topics -->
+	                        <tr>
+	                           <td style = "width: 350px;">
+	                           		<!-- Twitter api results -->
+	                                <div id = "Twitter"> </div>
+	                           </td>
+	                           <td style = "width: 300px;">
+	                              <div class = "trend_wrapper">
+	                                 <div class = "trend_header"> Trending </div>
+	                                 <div class = "trend_inner">
+	                                 	<!-- List of trending topics -->
+	                                    <ul class = "trend_items">
+	                                    </ul>
+	                                 </div>
+	                              </div>
+	                           </td>
+	                        </tr>
+	                     </table>
+	                  </div>
+	               </div>
+	            </div>
+	         </div>
+	      </div>
+	      
+	      
+	      <div id="tutorial">	<!-- Tutorial steps -->
+	         <div id ="stepOne" class="modal">		<!-- Step 1 -->
+	            <div class="content">
+	               Hover over a state and click to select and open info box
+	            </div>
+	         </div>
+	         <div id ="stepTwo" class="modal">		<!-- Step 2 -->
+	            <div class="content">
+	               <div id="text">
+	                  View a State Summary in the Info Tab.
+	                  <br/>
+	                  Click the News Tab when ready.
+	               </div>
+	               <div>
+	               	  <!-- next button -->
+	                  <button class="nextBtn" onclick="next1()"> next </button>
+	               </div>
+	            </div>
+	         </div>
+	         <div id ="stepThree" class="modal">	<!-- Step 3 -->
+	            <div class="content">
+	               <div>
+	                  You can click the 'x' on the top right or click outside of the box to exit the modal
+	               </div>
+	              
+	            </div>
+	         </div>
+	         <div id ="stepFour" class="modal">		<!-- Step 4 -->
+	            <div class="content">
+	               <div>
+	                  Pins show the top news stories around the country. Double click on a sprite to view an article. Click outside or click the sprite again to close to article.
+	               </div>
+	               <div>
+	               	  <!-- next button -->
+	                  <button class="nextBtn" onclick="next3()"> next </button>
+	               </div>
+	            </div>
+	         </div>
+	         <div id ="stepFive" class="modal">		<!-- Step 5 -->
+	            <div class="content">
+	               <div>
+	                  This dropdown allows users to choose the news sources they want displayed on the map. Have fun clicking around and learning more about the country. Enjoy!
+	               </div>
+	               <div>
+	               	  <!-- next button -->
+	                  <button class="nextBtn" onclick="next4()"> exit </button>
+	               </div>
+	            </div>
+	         </div>
+	      </div>
+	   </div>
+	
+	<!-- Location pin sprite -->
+	<!--Baseline sprite used to by jquery to calculate its width and height (this particular sprite will never be seen by the user)-->
+	<img class ='sprite' id = "hide" src = 'pictures/loc.png' style = "display: none;">	
+	</div>
+	
+	
+	<!-- Javascript files -->
+	<script src="js/raphael-min.js"> </script>
+	<script src="js/main.js"> </script>
+</body>
+</html>  
