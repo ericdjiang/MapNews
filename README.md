@@ -1,3 +1,4 @@
+![GIF](images/p2.gif)
 # map-news
 Realtime web application built with HTML/CSS/Javascript, utilizing Socket.io and multiple news API's to deliver a centralized, visual representation of nationwide news. Built by Eric Jiang, Melina Muthuswamy, and Kevin Yan.
 
@@ -10,5 +11,4 @@ Our mission is to give you a unique way of interacting with news and help you st
 node /js/n.js
 ```
 ## Example
-![GIF](images/p2.gif)
 ![Screencap of main application](images/p1.PNG)
